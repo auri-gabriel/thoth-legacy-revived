@@ -166,21 +166,37 @@
             }));
         }
 
-        if ($('#tab_data_extraction').length) {
-            let qe = null;
-            {% if data.project is defined and data.extraction is defined and data.project.get_extraction > 0 %}
-                {% for qe in data.extraction %}
-                    qe = new Extraction_Chars('{{ qe.id|e('js') }}', '{{ qe.type|e('js') }}', {{ qe.data|json_encode|raw }}, 'tab_data_extraction_charts');
-                    qe.show();
-                {% endfor %}
+        const extractionSelect = {{ (data.extraction is defined ? data.extraction : [])|json_encode|raw }};
+        const extractionMultiple = {{ (data.multiple is defined ? data.multiple : [])|json_encode|raw }};
 
-                {% if data.multiple is defined %}
-                    {% for qe in data.multiple %}
-                        qe = new Extraction_Chars('{{ qe.id|e('js') }}', '{{ qe.type|e('js') }}', {{ qe.data|json_encode|raw }}, 'tab_data_extraction_charts');
-                        qe.show();
-                    {% endfor %}
-                {% endif %}
-            {% endif %}
+        function renderExtractionCharts() {
+            const chartsContainer = document.getElementById('tab_data_extraction_charts');
+            if (!chartsContainer) {
+                return;
+            }
+
+            chartsContainer.innerHTML = '';
+            const allExtractions = extractionSelect.concat(extractionMultiple);
+
+            if (!allExtractions.length) {
+                chartsContainer.innerHTML = '<div class="alert alert-info mb-0">No extraction charts available for this project yet.</div>';
+                return;
+            }
+
+            allExtractions.forEach(function (item) {
+                const chart = new Extraction_Chars(item.id, item.type, item.data, 'tab_data_extraction_charts');
+                chart.show();
+            });
+        }
+
+        if ($('#tab_data_extraction').length) {
+            $('a[data-bs-toggle="pill"][href="#tab_data_extraction"]').on('shown.bs.tab', function () {
+                renderExtractionCharts();
+            });
+
+            if ($('#tab_data_extraction').hasClass('show') || $('#tab_data_extraction').hasClass('active')) {
+                renderExtractionCharts();
+            }
         }
 
         if ($('#table_papers_quality_rep').length && $.fn.DataTable) {
