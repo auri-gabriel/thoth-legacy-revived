@@ -1,15 +1,31 @@
-<footer class="footer bg-body-tertiary border-top py-4">
-	<div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
-		<div class="small text-secondary text-center text-md-start">
-			&copy; {{ "now"|date("Y") }} Thoth — Open Source SLR Platform
-		</div>
-		<div class="d-flex align-items-center justify-content-center gap-3">
-			<a target="_blank" href="https://github.com/ProjetoESE/Thoth" class="text-secondary-emphasis fs-4" aria-label="GitHub Repository">
-				<i class="fab fa-github"></i>
-			</a>
-			<a target="_blank" href="https://github.com/ProjetoESE/Thoth/issues" class="text-danger fs-5" aria-label="Report an Issue">
-				<i class="fas fa-bug"></i>
-			</a>
+<footer class="footer bg-light border-top py-4" role="contentinfo">
+	<div class="container">
+		<div class="row gy-3 align-items-center justify-content-between">
+			<div class="col-12 col-md">
+				<p class="small text-body-secondary mb-1">&copy; {{ "now"|date("Y") }} Thoth</p>
+				<p class="small text-body-tertiary mb-0">Open-source platform for Systematic Literature Reviews</p>
+			</div>
+
+			<div class="col-12 col-md-auto">
+				<nav class="d-flex align-items-center justify-content-center justify-content-md-end gap-3" aria-label="Footer navigation">
+					<a href="{{ site_url('about') }}" class="small link-secondary text-decoration-none">About</a>
+					<a href="{{ site_url('help') }}" class="small link-secondary text-decoration-none">Help</a>
+				</nav>
+			</div>
+
+			<div class="col-12 col-md-auto">
+				<div class="d-flex align-items-center justify-content-center justify-content-md-end gap-2">
+					<a target="_blank" rel="noopener noreferrer" href="https://github.com/auri-gabriel/Thoth" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-2" aria-label="GitHub Repository">
+						<i class="fab fa-github" aria-hidden="true"></i>
+						<span>Repository</span>
+					</a>
+					<a target="_blank" rel="noopener noreferrer" href="https://github.com/auri-gabriel/Thoth/issues" class="btn btn-sm btn-outline-danger d-inline-flex align-items-center gap-2" aria-label="Report an Issue">
+						<i class="fas fa-bug" aria-hidden="true"></i>
+						<span>Report issue</span>
+					</a>
+				</div>
+			</div>
 		</div>
 	</div>
 	<input type="hidden" id="base_url" value="{{ base_url() }}">
+</footer>
