@@ -9,7 +9,7 @@
 	<section class="py-5">
 		<div class="container">
 			<div class="card shadow-sm mb-4">
-				<div class="card-body p-4 p-lg-5">
+				<div class="card-body bg-light p-4 p-lg-5">
 					<div class="row align-items-center g-4">
 						<div class="col-lg-8">
 							<span class="badge bg-primary-subtle text-primary mb-3">
@@ -41,7 +41,7 @@
 			<div class="row g-4 mb-4">
 				<div class="col-md-6 col-xl-4">
 					<div class="card h-100 shadow-sm">
-						<div class="card-body">
+						<div class="card-body bg-light">
 							<h5 class="card-title fw-semibold d-flex align-items-center gap-2">
 								<i class="fas fa-project-diagram text-primary"></i>
 								Project Management
@@ -52,7 +52,7 @@
 				</div>
 				<div class="col-md-6 col-xl-4">
 					<div class="card h-100 shadow-sm">
-						<div class="card-body">
+						<div class="card-body bg-light">
 							<h5 class="card-title fw-semibold d-flex align-items-center gap-2">
 								<i class="fas fa-users text-primary"></i>
 								Collaborative Workflow
@@ -63,7 +63,7 @@
 				</div>
 				<div class="col-md-6 col-xl-4">
 					<div class="card h-100 shadow-sm">
-						<div class="card-body">
+						<div class="card-body bg-light">
 							<h5 class="card-title fw-semibold d-flex align-items-center gap-2">
 								<i class="fas fa-list-check text-primary"></i>
 								Planning & Protocol
@@ -74,7 +74,7 @@
 				</div>
 				<div class="col-md-6 col-xl-4">
 					<div class="card h-100 shadow-sm">
-						<div class="card-body">
+						<div class="card-body bg-light">
 							<h5 class="card-title fw-semibold d-flex align-items-center gap-2">
 								<i class="fas fa-clipboard-check text-primary"></i>
 								Selection & Quality
@@ -85,7 +85,7 @@
 				</div>
 				<div class="col-md-6 col-xl-4">
 					<div class="card h-100 shadow-sm">
-						<div class="card-body">
+						<div class="card-body bg-light">
 							<h5 class="card-title fw-semibold d-flex align-items-center gap-2">
 								<i class="fas fa-table text-primary"></i>
 								Extraction & Reporting
@@ -96,7 +96,7 @@
 				</div>
 				<div class="col-md-6 col-xl-4">
 					<div class="card h-100 shadow-sm">
-						<div class="card-body">
+						<div class="card-body bg-light">
 							<h5 class="card-title fw-semibold d-flex align-items-center gap-2">
 								<i class="fas fa-file-export text-primary"></i>
 								Export & Reproducibility
@@ -113,21 +113,21 @@
 						<div class="card-header">
 							<h4 class="mb-0 fw-semibold">Why Thoth?</h4>
 						</div>
-						<div class="card-body">
+						<div class="card-body bg-light">
 							<ul class="list-group list-group-flush">
-								<li class="list-group-item px-0">
+								<li class="list-group-item bg-light px-0">
 									<strong>Open Source:</strong>
 									Thoth is free to use, modify, and contribute to. We believe in open science and community-driven development.
 								</li>
-								<li class="list-group-item px-0">
+								<li class="list-group-item bg-light px-0">
 									<strong>User-Centered Design:</strong>
 									Built with researchers in mind, Thoth aims for a clean, intuitive, and modern user experience.
 								</li>
-								<li class="list-group-item px-0">
+								<li class="list-group-item bg-light px-0">
 									<strong>Transparency:</strong>
 									All project actions are logged, ensuring traceability and reproducibility of your research.
 								</li>
-								<li class="list-group-item px-0 border-bottom-0">
+								<li class="list-group-item bg-light px-0 border-bottom-0">
 									<strong>Community Support:</strong>
 									Join our community on
 									<a href="https://github.com/auri-gabriel/Thoth" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -139,7 +139,7 @@
 				</div>
 				<div class="col-lg-5">
 					<div class="card shadow-sm mb-4">
-						<div class="card-body">
+						<div class="card-body bg-light">
 							<h5 class="fw-semibold d-flex align-items-center gap-2 mb-2">
 								<i class="fas fa-award text-primary"></i>
 								Acknowledgements
@@ -148,7 +148,7 @@
 						</div>
 					</div>
 					<div class="card shadow-sm">
-						<div class="card-body">
+						<div class="card-body bg-light">
 							<h5 class="fw-semibold d-flex align-items-center gap-2 mb-2">
 								<i class="fas fa-code-branch text-primary"></i>
 								Get Involved
@@ -173,12 +173,12 @@
 						View on GitHub
 					</a>
 				</div>
-				<div class="card-body">
+				<div class="card-body bg-light">
 					{% if contributors is not empty %}
 						<div class="row g-3">
 							{% for contributor in contributors %}
 								<div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-									<a href="{{ contributor.profile_url }}" target="_blank" rel="noopener noreferrer" class="list-group-item list-group-item-action border rounded d-flex align-items-center gap-3 h-100 text-decoration-none px-2 py-1">
+									<a href="{{ contributor.profile_url }}" target="_blank" rel="noopener noreferrer" class="list-group-item bg-light list-group-item bg-light-action border rounded d-flex align-items-center gap-3 h-100 text-decoration-none px-2 py-1">
 										<img src="{{ contributor.avatar_url }}" alt="{{ contributor.login }} avatar" class="rounded-circle" width="40" height="40" loading="lazy">
 										<div>
 											<div class="fw-semibold text-body">{{ contributor.login }}</div>
