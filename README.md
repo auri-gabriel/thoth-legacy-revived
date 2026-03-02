@@ -30,7 +30,13 @@ git clone https://github.com/auri-gabriel/thoth.git
 cd thoth
 ```
 
-### 2) Configure application files
+### 2) Install PHP dependencies
+
+```sh
+composer install
+```
+
+### 3) Configure application files
 
 ```sh
 cp application/config/database_sample.php application/config/database.php
@@ -39,7 +45,7 @@ cp application/config/config_sample.php application/config/config.php
 
 Optionally edit these files to match your local database settings.
 
-### 3) Start containers
+### 4) Start containers
 
 ```sh
 docker compose up --build
@@ -47,7 +53,7 @@ docker compose up --build
 
 Application URL: [http://localhost:8080](http://localhost:8080)
 
-### 4) Initialize the database
+### 5) Initialize the database
 
 ```sh
 docker exec -i <mysql_container_name> mysql -uthoth -pthoth thoth < docs/database/thoth.sql
@@ -55,7 +61,7 @@ docker exec -i <mysql_container_name> mysql -uthoth -pthoth thoth < docs/databas
 
 Replace `<mysql_container_name>` with your actual container name (for example, `thoth-db-1`).
 
-### 5) Session directory permissions (if needed)
+### 6) Session directory permissions (if needed)
 
 If you get session path/permission errors:
 
@@ -64,11 +70,11 @@ mkdir -p application/cache/sessions
 chmod 777 application/cache/sessions
 ```
 
-### 6) Default credentials
+### 7) Default credentials
 
 Check the database seed data (or ask your admin) for available default users.
 
-### 7) Stop containers
+### 8) Stop containers
 
 ```sh
 docker compose down -v
