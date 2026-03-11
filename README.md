@@ -1,15 +1,55 @@
 
-# Thoth: Systematic Literature Review Platform [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/auri-gabriel/Thoth)
+# Thoth Legacy Revived
 
 Thoth is a web platform that supports the workflow of a Systematic Literature Review (SLR), including project organization, extraction activities, and progress tracking.
 
-## Legacy version notice
+This repository is a **revived and refactored** version of the original Thoth legacy codebase, carried out as a learning experience. It modernizes the front-end stack and improves the internal architecture while preserving the original feature set.
 
-> This repository contains the **legacy version** of Thoth, intended mainly for educational, experimental, and archival use.
->
 > For production usage and the latest features, visit **[Thoth 2.0](https://thoth-slr.com/)**.
 
-This refactored legacy codebase is maintained for historical interest and community contributions. It is **not recommended for mission-critical usage**.
+## What changed from the original legacy
+
+The original codebase used plain PHP views, monolithic controllers, and static Bootstrap dist files copied directly into the project. This revived version introduces the following changes:
+
+### Twig template engine
+
+All views were migrated from inline PHP to [Twig](https://twig.symfony.com/). This enforces a clean separation between presentation and logic, makes templates more readable, and enables template inheritance through layouts and partials.
+
+### Controller refactoring
+
+Several large, multi-responsibility controllers were broken down into smaller, focused controllers. This makes the routing and business logic easier to follow, test, and extend.
+
+### npm-managed front-end dependencies
+
+Static vendor JS and CSS files were removed from the repository. All front-end dependencies are now declared in `package.json` and installed via npm. This includes:
+
+- [Bootstrap 5](https://getbootstrap.com/) (via npm, compiled from source)
+- [DataTables](https://datatables.net/) with Bootstrap 5 integration
+- [Highcharts](https://www.highcharts.com/)
+- [Quill](https://quilljs.com/) rich text editor
+- [Select2](https://select2.org/)
+- [SweetAlert2](https://sweetalert2.github.io/)
+- [JSZip](https://stuk.github.io/jszip/) and [pdfmake](http://pdfmake.org/)
+
+### Bootstrap with SCSS
+
+Instead of loading pre-compiled Bootstrap CSS from a `dist/` folder, the project now imports Bootstrap via SCSS. Custom styles live in `assets/scss/` and are compiled into a single `assets/css/theme.css` file using the `sass` CLI.
+
+To rebuild styles:
+
+```sh
+npm run build-css
+```
+
+To watch for changes during development:
+
+```sh
+npm run watch-scss
+```
+
+### Docker and PHP upgrade
+
+The project was fully Dockerized using Docker Compose, making local setup reproducible without any manual PHP/Apache configuration. The PHP runtime was upgraded from the original **PHP 5.x** to **PHP 8.1** (`php:8.1-apache`), bringing modern language features, improved performance, and continued security support.
 
 ## Screenshot
 
@@ -19,9 +59,19 @@ This refactored legacy codebase is maintained for historical interest and commun
 
 <p align="center"><em>Example of the Thoth dashboard and progress tracking interface.</em></p>
 
-## Getting started (Docker)
+## Tech stack
 
-Use Docker Compose to run Thoth locally.
+| Layer | Technology |
+|---|---|
+| Framework | CodeIgniter 3 (PHP 8.1) |
+| Templating | Twig 3 |
+| Styling | Bootstrap 5 · SCSS · Sass CLI |
+| Front-end libs | DataTables · Highcharts · Quill · Select2 · SweetAlert2 |
+| Package manager | npm (front-end) · Composer (PHP) |
+| Database | MySQL |
+| Runtime | Docker / Docker Compose (`php:8.1-apache`) |
+
+## Getting started (Docker)
 
 ### 1) Clone the repository
 
@@ -42,7 +92,13 @@ composer install
 npm install
 ```
 
-### 4) Configure application files
+### 4) Build CSS
+
+```sh
+npm run build-css
+```
+
+### 5) Configure application files
 
 ```sh
 cp application/config/database_sample.php application/config/database.php
@@ -51,7 +107,7 @@ cp application/config/config_sample.php application/config/config.php
 
 Optionally edit these files to match your local database settings.
 
-### 5) Start containers
+### 6) Start containers
 
 ```sh
 docker compose up --build
@@ -59,7 +115,7 @@ docker compose up --build
 
 Application URL: [http://localhost:8080](http://localhost:8080)
 
-### 6) Initialize the database
+### 7) Initialize the database
 
 ```sh
 docker exec -i <mysql_container_name> mysql -uthoth -pthoth thoth < docs/database/thoth.sql
@@ -67,7 +123,7 @@ docker exec -i <mysql_container_name> mysql -uthoth -pthoth thoth < docs/databas
 
 Replace `<mysql_container_name>` with your actual container name (for example, `thoth-db-1`).
 
-### 7) Session directory permissions (if needed)
+### 8) Session directory permissions (if needed)
 
 If you get session path/permission errors:
 
@@ -76,11 +132,11 @@ mkdir -p application/cache/sessions
 chmod 777 application/cache/sessions
 ```
 
-### 8) Default credentials
+### 9) Default credentials
 
 Check the database seed data (or ask your admin) for available default users.
 
-### 9) Stop containers
+### 10) Stop containers
 
 ```sh
 docker compose down -v
@@ -91,6 +147,7 @@ docker compose down -v
 - If login fails, confirm the SQL import was executed successfully.
 - If sessions do not persist, verify `application/cache/sessions` exists and is writable.
 - If containers fail to start, run `docker compose logs` to inspect service errors.
+- If styles look broken, make sure you ran `npm run build-css` after installing dependencies.
 
 ## Contributing
 
