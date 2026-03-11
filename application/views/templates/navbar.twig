@@ -2,7 +2,7 @@
     <div class="container">
         <a class="navbar-brand d-flex align-items-center fw-bold text-decoration-none text-white" href="{% if session.logged_in %}{{ site_url('dashboard') }}{% else %}{{ site_url() }}{% endif %}" title="Thoth - Evidence Synthesis Platform">
             <h1 class="mb-0">
-                <span class="me-3 p-2 bg-primary text-white d-flex align-items-center justify-content-center flex-shrink-0" style="height: 32px; font-size: 1rem; font-weight: bold;">
+                <span class="me-3 p-2 bg-primary text-white d-flex align-items-center justify-content-center shrink-0" style="height: 32px; font-size: 1rem; font-weight: bold;">
                     <img id="logo" src="{{ base_url('assets/img/icone-navbar.svg') }}" width="24" height="24" class="d-inline-block align-top" alt="">
                     Thoth
                 </span>
@@ -18,7 +18,7 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center flex-row gap-2">
                 <li class="nav-item align-self-center mx-auto" style="min-width: 260px;">
                     <form class="d-flex w-100 align-items-center" action="{{ site_url('search') }}" style="margin-bottom: 0;">
-                        <input class="form-control me-2 opt flex-grow-1 align-self-center" name="search" type="search" placeholder="Search in Thoth" aria-label="Search" style="height: 38px;">
+                        <input class="form-control me-2 opt grow align-self-center" name="search" type="search" placeholder="Search in Thoth" aria-label="Search" style="height: 38px;">
                         <button class="btn btn-outline-primary opt d-flex align-items-center gap-1 align-self-center" type="submit" style="height: 38px;">
                             <span class="fas fa-search"></span> <span class="d-none d-md-inline">Search</span>
                         </button>
