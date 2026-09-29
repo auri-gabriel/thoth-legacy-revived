@@ -51,6 +51,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 */
 
 $route['default_controller'] = 'Home_Controller';
+$route['health'] = 'Health_Controller/index';
 
 // Authentication & User
 $route['login'] = 'Login_Controller/login';

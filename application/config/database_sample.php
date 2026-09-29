@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'db',
-	'username' => 'thoth',
-	'password' => 'thoth',
-	'database' => 'thoth',
+	'hostname' => getenv('DB_HOST') ?: 'db',
+	'username' => getenv('DB_USERNAME') ?: 'thoth',
+	'password' => getenv('DB_PASSWORD') ?: 'thoth',
+	'database' => getenv('DB_DATABASE') ?: 'thoth',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -88,9 +88,9 @@ $db['default'] = array(
 	'char_set' => 'utf8',
 	'dbcollat' => 'utf8_general_ci',
 	'swap_pre' => '',
-	'encrypt' => FALSE,
+	'encrypt' => filter_var(getenv('DB_ENCRYPT') ?: 'false', FILTER_VALIDATE_BOOLEAN),
 	'compress' => FALSE,
 	'stricton' => FALSE,
 	'failover' => array(),
-	'save_queries' => TRUE
+	'save_queries' => ENVIRONMENT !== 'production'
 );

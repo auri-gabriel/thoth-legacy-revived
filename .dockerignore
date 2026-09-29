@@ -13,3 +13,7 @@ export/
 *.DS_Store
 application/cache/
 application/logs/
+
+application/config/config.php
+application/config/database.php
+Dockerfile.production
